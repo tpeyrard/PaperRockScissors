@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class Main {
     private static final Map<String, Hand> STRING_HAND_MAP = ImmutableMap.of(
-            "ROCKS", Hand.ROCK,
+            "ROCK", Hand.ROCK,
             "SCISSORS", Hand.SCISSORS,
             "PAPER", Hand.PAPER);
 
