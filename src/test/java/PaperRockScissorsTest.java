@@ -1,3 +1,4 @@
+import org.fest.assertions.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -57,7 +58,7 @@ public class PaperRockScissorsTest {
 
     @Test
     public void
-    fails_when_random_does_not_pick_a_hand_between_the_three_available(){
+    fails_when_random_does_not_pick_a_hand_between_the_three_available() {
         for (int i = 0; i < 100_000; i++) {
             game.nextRandomHand(); // Throws an ArrayOutOfBondException if random integer is wrong
         }
@@ -65,7 +66,7 @@ public class PaperRockScissorsTest {
 
     @Test(expected = GameOverException.class)
     public void
-    user_can_play_n_parties(){
+    user_can_play_n_parties() {
         int numberOfParties = 12;
         PaperRockScissors game = PaperRockScissors.newGame().numberOfParties(numberOfParties).play();
 
@@ -75,6 +76,14 @@ public class PaperRockScissorsTest {
 
         // Game is over
         game.rock();
+    }
+
+    @Test
+    public void
+    it_sanitizes_input_of_number_of_parties() {
+        PaperRockScissors game = PaperRockScissors.newGame().numberOfParties(-5).play();
+
+        Assertions.assertThat(game.numberOfParties()).isEqualTo(5);
     }
 
     private GameAssert assertPlayer(int paper) {

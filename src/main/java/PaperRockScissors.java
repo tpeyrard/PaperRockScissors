@@ -1,14 +1,4 @@
-import com.google.common.collect.ImmutableBiMap;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.security.SecureRandom;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 
 public class PaperRockScissors {
     private final SecureRandom secureRandom = new SecureRandom();
@@ -78,7 +68,7 @@ public class PaperRockScissors {
         private int numberOfParties = 1;
 
         public PaperRockScissorsBuilder numberOfParties(int numberOfParties) {
-            this.numberOfParties = numberOfParties;
+            this.numberOfParties = Math.abs(numberOfParties);
             return this;
         }
 
