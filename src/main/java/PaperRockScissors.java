@@ -14,6 +14,11 @@ public final class PaperRockScissors {
       return theWinnerIs(playerHand.beats(nextRandomHand()));
    }
 
+   Hand nextRandomHand() {
+      int randomNumber = SECURE_RANDOM.nextInt();
+      return Hand.values()[Math.abs(randomNumber % Hand.POSSIBLE_HANDS)];
+   }
+
    private static Winner theWinnerIs(int playerResult) {
       switch (playerResult) {
          case Hand.Constants.WIN:
@@ -23,11 +28,6 @@ public final class PaperRockScissors {
          default:
             return Winner.DRAW;
       }
-   }
-
-   Hand nextRandomHand() {
-      int randomNumber = SECURE_RANDOM.nextInt();
-      return Hand.values()[Math.abs(randomNumber % Hand.POSSIBLE_HANDS)];
    }
 
 }
