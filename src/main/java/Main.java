@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Locale;
 import java.util.Map;
+import java.util.MissingFormatArgumentException;
 
 import com.google.common.collect.ImmutableMap;
 
@@ -13,40 +14,49 @@ public class Main {
          "PAPER", Hand.PAPER);
 
    public static void main(String[] args) throws IOException {
-      int numberOfParties = 1;
-      if (args.length == 1) {
-         numberOfParties = Integer.parseInt(args[0]);
+      if (args.length != 1) {
+         throw new MissingFormatArgumentException("You need to specify the number of parties");
       }
+
+      final int numberOfParties = numberOfParties(args[0]);
 
       System.out.println("Number of parties: " + numberOfParties);
       System.out.println("Enter either: rock, paper, scissors:");
 
       try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
-         PaperRockScissors game = PaperRockScissors.newGame();
+         playParties(numberOfParties, bufferedReader);
+      }
+   }
 
-         while (numberOfParties > 0) {
-            String userInput = bufferedReader.readLine().toUpperCase(Locale.ENGLISH);
-            Hand playerHand = STRING_HAND_MAP.get(userInput);
-            if (playerHand == null) {
-               System.out.println("Unknown hand");
-               continue;
-            }
-            int result = game.play(playerHand);
+   static int numberOfParties(String arg) {
+      return Math.abs(Integer.parseInt(arg));
+   }
 
-            String winner;
-            switch (result) {
-               case -1:
-                  winner = "Computer";
-                  break;
-               case 1:
-                  winner = "You";
-                  break;
-               default:
-                  winner = "No one - Draw";
-            }
-            System.out.println("Winner = " + winner);
-            numberOfParties--;
+   static void playParties(int numberOfParties, BufferedReader bufferedReader) throws IOException {
+      PaperRockScissors game = PaperRockScissors.newGame();
+
+      while (numberOfParties > 0) {
+         String userInput = bufferedReader.readLine().toUpperCase(Locale.ENGLISH);
+         Hand playerHand = STRING_HAND_MAP.get(userInput);
+         if (playerHand == null) {
+            System.out.println("Unknown hand");
+            continue;
          }
+         int result = game.play(playerHand);
+
+         String winner;
+         switch (result) {
+            case -1:
+               winner = "Computer";
+               break;
+            case 1:
+               winner = "You";
+               break;
+            default:
+               winner = "No one - Draw";
+         }
+         System.out.println("Winner = " + winner);
+         numberOfParties--;
       }
    }
 }

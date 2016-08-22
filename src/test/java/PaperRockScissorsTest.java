@@ -49,30 +49,4 @@ public class PaperRockScissorsTest {
       }
    }
 
-
-    /* Should be part of Main tests
-    @Test(expected = GameOverException.class)
-    public void
-    user_can_play_n_parties() {
-        int numberOfParties = 12;
-        PaperRockScissors game = PaperRockScissors.newGame().numberOfParties(numberOfParties).play();
-
-        for (int i = 0; i < numberOfParties; i++) {
-           game.play(Hand.ROCK);
-        }
-
-        // Game is over
-       game.play(Hand.ROCK);
-    }
-*/
-
-/*     Should be part of main tests
-    @Test
-    public void
-    it_sanitizes_input_of_number_of_parties() {
-        PaperRockScissors game = PaperRockScissors.newGame().numberOfParties(-5).play();
-
-        Assertions.assertThat(game.numberOfParties()).isEqualTo(5);
-    }*/
-
 }
