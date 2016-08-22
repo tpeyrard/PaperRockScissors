@@ -44,6 +44,6 @@ public class MainTest {
    @Test
    public void
    it_sanitizes_input_of_number_of_parties() {
-      assertThat(Main.numberOfParties("-1")).isEqualTo(1);
+      assertThat(Main.positiveNumberOfParties("-1")).isEqualTo(1);
    }
 }

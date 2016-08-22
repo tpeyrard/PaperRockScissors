@@ -12,7 +12,7 @@ public class Main {
          throw new MissingFormatArgumentException("You need to specify the number of parties");
       }
 
-      final int numberOfParties = numberOfParties(args[0]);
+      final int numberOfParties = positiveNumberOfParties(args[0]);
 
       System.out.println("Number of parties: " + numberOfParties);
       System.out.println("Enter either: rock, paper, scissors:");
@@ -22,7 +22,7 @@ public class Main {
       }
    }
 
-   static int numberOfParties(String arg) {
+   static int positiveNumberOfParties(String arg) {
       return Math.abs(Integer.parseInt(arg));
    }
 
