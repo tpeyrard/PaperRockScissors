@@ -19,9 +19,9 @@ public class MainTest {
    @Test
    public void
    user_can_play_n_parties() throws IOException {
-      ByteArrayInputStream threeParties = new ByteArrayInputStream(Joiner.on('\n').join(playerHands).getBytes());
+      ByteArrayInputStream threeHands = new ByteArrayInputStream(Joiner.on('\n').join(playerHands).getBytes());
 
-      final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(threeParties));
+      final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(threeHands));
       Main.playParties(playerHands.size(), bufferedReader);
 
       assertThat(bufferedReader.readLine()).isNull();
@@ -33,9 +33,9 @@ public class MainTest {
       final String additionalHand = "paper";
       final String MorePlayerHands = FluentIterable.from(playerHands).append(additionalHand).join(Joiner.on('\n'));
 
-      ByteArrayInputStream threeParties = new ByteArrayInputStream(MorePlayerHands.getBytes());
+      ByteArrayInputStream fourHands = new ByteArrayInputStream(MorePlayerHands.getBytes());
 
-      final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(threeParties));
+      final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fourHands));
       Main.playParties(playerHands.size(), bufferedReader);
 
       assertThat(bufferedReader.readLine()).isEqualTo(additionalHand);

@@ -2,16 +2,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Locale;
-import java.util.Map;
 import java.util.MissingFormatArgumentException;
-
-import com.google.common.collect.ImmutableMap;
+import java.util.Optional;
 
 public class Main {
-   private static final Map<String, Hand> STRING_HAND_MAP = ImmutableMap.of(
-         "ROCK", Hand.ROCK,
-         "SCISSORS", Hand.SCISSORS,
-         "PAPER", Hand.PAPER);
 
    public static void main(String[] args) throws IOException {
       if (args.length != 1) {
@@ -37,12 +31,14 @@ public class Main {
 
       while (numberOfParties > 0) {
          String userInput = bufferedReader.readLine().toUpperCase(Locale.ENGLISH);
-         Hand playerHand = STRING_HAND_MAP.get(userInput);
-         if (playerHand == null) {
+         final Optional<Hand> playerHand = Hand.toHand(userInput);
+
+         if (!playerHand.isPresent()) {
             System.out.println("Unknown hand");
             continue;
          }
-         int result = game.play(playerHand);
+
+         int result = game.play(playerHand.get());
 
          String winner;
          switch (result) {
