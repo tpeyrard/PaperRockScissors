@@ -11,4 +11,10 @@
 `java -jar target/prs-1.0-SNAPSHOT.jar <NUMBER_OF_PARTIES>`
 
 ## Docker
-There is a docker branch containing the docker file. It does not work very well because NPE on the inputstream. I don't know yet whether it's related to Docker or not.
+```
+docker build -t prs .
+
+docker run -i prs
+```
+
+Don't forget `-i` option in order to use the SDTIN.
