@@ -1,22 +1,24 @@
 import static org.fest.assertions.api.Assertions.assertThat;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import org.junit.Test;
 
 public class MainTest {
 
-/*   @Test
+   @Test
    public void
    user_can_play_n_parties() throws IOException {
-      int numberOfParties = 12;
-      Main.playParties(numberOfParties, new BufferedReader(new InputStreamReader(System.in)));
+      ByteArrayInputStream threeParties = new ByteArrayInputStream("paper\nrock\nscissors".getBytes());
 
-      for (int i = 0; i < numberOfParties; i++) {
-         game.play(Hand.ROCK);
-      }
+      final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(threeParties));
+      Main.playParties(3, bufferedReader);
 
-      // Game is over
-      game.play(Hand.ROCK);
-   }*/
+      assertThat(bufferedReader.readLine()).isNull();
+   }
 
    @Test
    public void
