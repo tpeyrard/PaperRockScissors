@@ -10,8 +10,19 @@ public final class PaperRockScissors {
       return new PaperRockScissors();
    }
 
-   public int play(Hand playerHand) {
-      return playerHand.beats(nextRandomHand());
+   public Winner play(Hand playerHand) {
+      return theWinnerIs(playerHand.beats(nextRandomHand()));
+   }
+
+   static Winner theWinnerIs(int playerResult) {
+      switch (playerResult) {
+         case Hand.Constants.WIN:
+            return  Winner.PLAYER;
+         case Hand.Constants.LOSE:
+            return Winner.COMPUTER;
+         default:
+            return Winner.DRAW;
+      }
    }
 
    Hand nextRandomHand() {

@@ -38,22 +38,9 @@ public class Main {
             continue;
          }
 
-         int result = game.play(playerHand.get());
-
-         System.out.println("Winner = " + theWinnerIs(result));
+         System.out.println("Winner = " + game.play(playerHand.get()));
 
          numberOfParties--;
-      }
-   }
-
-   private static String theWinnerIs(int playerResult) {
-      switch (playerResult) {
-         case Hand.Constants.WIN:
-            return  "You";
-         case Hand.Constants.LOSE:
-            return "Computer";
-         default:
-            return "No one - Draw";
       }
    }
 
