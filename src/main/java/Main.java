@@ -31,7 +31,7 @@ public class Main {
 
       while (numberOfParties > 0) {
          String userInput = bufferedReader.readLine().toUpperCase(Locale.ENGLISH);
-         final Optional<Hand> playerHand = Hand.toHand(userInput);
+         final Optional<Hand> playerHand = toHand(userInput);
 
          if (!playerHand.isPresent()) {
             System.out.println("Unknown hand");
@@ -54,5 +54,14 @@ public class Main {
          System.out.println("Winner = " + winner);
          numberOfParties--;
       }
+   }
+
+   private static Optional<Hand> toHand(String userHand) {
+      for (final Hand hand : Hand.values()) {
+         if (hand.correspondsTo(userHand)) {
+            return Optional.of(hand);
+         }
+      }
+      return Optional.empty();
    }
 }

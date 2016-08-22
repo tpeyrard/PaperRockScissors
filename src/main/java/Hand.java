@@ -1,5 +1,3 @@
-import java.util.Optional;
-
 public enum Hand {
     SCISSORS {
         public int versus(Hand other) {
@@ -26,20 +24,11 @@ public enum Hand {
         return this.versus(other);
     }
 
-    protected abstract int versus(Hand other);
+   protected abstract int versus(Hand other);
 
     private static int winsVersus(Hand other, Hand loser) {
         return loser.equals(other) ? Constants.WIN : Constants.LOSE;
     }
-
-   public static Optional<Hand> toHand(String userHand) {
-      for (final Hand hand : values()) {
-         if (hand.correspondsTo(userHand)) {
-            return Optional.of(hand);
-         }
-      }
-      return Optional.empty();
-   }
 
    protected boolean correspondsTo(String userHand) {
       return this.toString().equals(userHand);
