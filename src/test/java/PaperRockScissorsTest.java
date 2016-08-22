@@ -15,30 +15,30 @@ public class PaperRockScissorsTest {
     @Test
     public void
     paper_beats_rock() {
-        assertPlayer(game.computer(Hand.ROCK).paper()).wins();
-        assertPlayer(game.computer(Hand.PAPER).rock()).loses();
+       assertPlayer(game.computer(Hand.ROCK).play(Hand.PAPER)).wins();
+       assertPlayer(game.computer(Hand.PAPER).play(Hand.ROCK)).loses();
     }
 
     @Test
     public void
     rock_beats_scissors() {
-        assertPlayer(game.computer(Hand.SCISSORS).rock()).wins();
-        assertPlayer(game.computer(Hand.ROCK).scissors()).loses();
+       assertPlayer(game.computer(Hand.SCISSORS).play(Hand.ROCK)).wins();
+       assertPlayer(game.computer(Hand.ROCK).play(Hand.SCISSORS)).loses();
     }
 
     @Test
     public void
     scissors_beats_paper() {
-        assertPlayer(game.computer(Hand.PAPER).scissors()).wins();
-        assertPlayer(game.computer(Hand.SCISSORS).paper()).loses();
+       assertPlayer(game.computer(Hand.PAPER).play(Hand.SCISSORS)).wins();
+       assertPlayer(game.computer(Hand.SCISSORS).play(Hand.PAPER)).loses();
     }
 
     @Test
     public void
     there_is_draw_if_players_play_the_same_hand() {
-        assertPlayer(game.computer(Hand.PAPER).paper()).draw();
-        assertPlayer(game.computer(Hand.SCISSORS).scissors()).draw();
-        assertPlayer(game.computer(Hand.ROCK).rock()).draw();
+       assertPlayer(game.computer(Hand.PAPER).play(Hand.PAPER)).draw();
+       assertPlayer(game.computer(Hand.SCISSORS).play(Hand.SCISSORS)).draw();
+       assertPlayer(game.computer(Hand.ROCK).play(Hand.ROCK)).draw();
     }
 
     @Test
@@ -49,11 +49,11 @@ public class PaperRockScissorsTest {
 
         // dummy run because we spy on mock after its creation, so nextRandomHand has already been called.
         // without pre-defined value
-        mockedGame.paper();
+       mockedGame.play(Hand.PAPER);
 
-        assertPlayer(mockedGame.paper()).wins();
-        assertPlayer(mockedGame.paper()).loses();
-        assertPlayer(mockedGame.rock()).loses();
+       assertPlayer(mockedGame.play(Hand.PAPER)).wins();
+       assertPlayer(mockedGame.play(Hand.PAPER)).loses();
+       assertPlayer(mockedGame.play(Hand.ROCK)).loses();
     }
 
     @Test
@@ -71,11 +71,11 @@ public class PaperRockScissorsTest {
         PaperRockScissors game = PaperRockScissors.newGame().numberOfParties(numberOfParties).play();
 
         for (int i = 0; i < numberOfParties; i++) {
-            game.rock();
+           game.play(Hand.ROCK);
         }
 
         // Game is over
-        game.rock();
+       game.play(Hand.ROCK);
     }
 
     @Test
