@@ -1,3 +1,4 @@
+import org.fest.assertions.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,30 +14,31 @@ public class PaperRockScissorsTest {
    @Test
    public void
    paper_beats_rock() {
-      assertPlayer(Hand.PAPER.beats(Hand.ROCK)).wins();
-      assertPlayer(Hand.ROCK.beats(Hand.PAPER)).loses();
+      HandAssert.assertThat(Hand.PAPER).beats(Hand.ROCK);
    }
 
    @Test
    public void
    rock_beats_scissors() {
-      assertPlayer(Hand.ROCK.beats(Hand.SCISSORS)).wins();
-      assertPlayer(Hand.SCISSORS.beats(Hand.ROCK)).loses();
+      HandAssert.assertThat(Hand.ROCK).beats(Hand.SCISSORS);
    }
 
    @Test
    public void
    scissors_beats_paper() {
-      assertPlayer(Hand.SCISSORS.beats(Hand.PAPER)).wins();
-      assertPlayer(Hand.PAPER.beats(Hand.SCISSORS)).loses();
+      HandAssert.assertThat(Hand.SCISSORS).beats(Hand.PAPER);
    }
 
    @Test
    public void
    there_is_draw_if_players_play_the_same_hand() {
-      assertPlayer(Hand.PAPER.beats(Hand.PAPER)).draw();
-      assertPlayer(Hand.SCISSORS.beats(Hand.SCISSORS)).draw();
-      assertPlayer(Hand.ROCK.beats(Hand.ROCK)).draw();
+      assertDraw(Hand.PAPER, Hand.PAPER);
+      assertDraw(Hand.SCISSORS, Hand.SCISSORS);
+      assertDraw(Hand.ROCK, Hand.ROCK);
+   }
+
+   private void assertDraw(Hand playerHand, Hand computerHand) {
+      Assertions.assertThat(playerHand.beats(computerHand)).isEqualTo(0);
    }
 
    @Test
@@ -72,9 +74,5 @@ public class PaperRockScissorsTest {
 
         Assertions.assertThat(game.numberOfParties()).isEqualTo(5);
     }*/
-
-   private GameAssert assertPlayer(int paper) {
-      return GameAssert.assertThat(paper);
-   }
 
 }
