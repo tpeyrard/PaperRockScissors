@@ -14,7 +14,7 @@ public final class PaperRockScissors {
       return theWinnerIs(playerHand.beats(nextRandomHand()));
    }
 
-   static Winner theWinnerIs(int playerResult) {
+   private static Winner theWinnerIs(int playerResult) {
       switch (playerResult) {
          case Hand.Constants.WIN:
             return  Winner.PLAYER;
