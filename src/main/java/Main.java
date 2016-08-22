@@ -40,19 +40,20 @@ public class Main {
 
          int result = game.play(playerHand.get());
 
-         String winner;
-         switch (result) {
-            case -1:
-               winner = "Computer";
-               break;
-            case 1:
-               winner = "You";
-               break;
-            default:
-               winner = "No one - Draw";
-         }
-         System.out.println("Winner = " + winner);
+         System.out.println("Winner = " + theWinnerIs(result));
+
          numberOfParties--;
+      }
+   }
+
+   private static String theWinnerIs(int result) {
+      switch (result) {
+         case -1:
+            return "Computer";
+         case 1:
+            return  "You";
+         default:
+            return "No one - Draw";
       }
    }
 
