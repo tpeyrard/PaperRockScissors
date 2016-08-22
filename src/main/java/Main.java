@@ -46,12 +46,12 @@ public class Main {
       }
    }
 
-   private static String theWinnerIs(int result) {
-      switch (result) {
-         case -1:
-            return "Computer";
-         case 1:
+   private static String theWinnerIs(int playerResult) {
+      switch (playerResult) {
+         case Hand.Constants.WIN:
             return  "You";
+         case Hand.Constants.LOSE:
+            return "Computer";
          default:
             return "No one - Draw";
       }
